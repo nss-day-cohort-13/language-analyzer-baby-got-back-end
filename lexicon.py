@@ -12,21 +12,26 @@ lexicon = [
     {
       "financial": [],
       "behavioral": [],
-      "scientific": [],
+      "scientific": ['space', 'exploration', 'moon', 'scientific', 'arguments'],
       "educational": [],
       "politics": [],
       "relationships": [],
-      "people": ['man', 'men', 'woman', 'women'],
+      "people": ['man', 'men', 'woman', 'women', 'human'],
       "grammar": ['sentence', 'sentences'],
-      "preference": ['love', 'loves']
+      "preference": ['love', 'loves'],
+      "goal": ['challenge', 'task', 'goal'],
+      "transportation": ['landing'],
+      "sociological": ['history', 'civilization', 'race']
     },
     "behavior":
     {
-      "aggressive": [],
+      "aggressive": ['impel'],
       "passive": [],
       "mentoring": [],
-      "inquisitive": [],
-      "transaction": []
+      "inquisitive": ['exploration', 'arguments'],
+      "transaction": [],
+      "explanatory": ['represents'],
+      "planning": ['proceeding', 'task', 'goal']
     }
   }
 ]
