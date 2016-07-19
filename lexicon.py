@@ -13,7 +13,10 @@ lexicon = [
       "scientific": [],
       "educational": [],
       "politics": [],
-      "relationships": []
+      "relationships": [],
+      "people": ['man', 'men', 'woman', 'women'],
+      "grammar": ['sentence', 'sentences'],
+      "preference": ['love', 'loves']
     },
     "behavior":
     {
