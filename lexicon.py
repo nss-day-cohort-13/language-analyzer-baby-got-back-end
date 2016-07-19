@@ -1,10 +1,12 @@
+from pos_words import *
+from neg_words import *
+
 lexicon = [
   {
     "sentiment":
     {
-      "positive": [],
-      "negative": [],
-      "neutral": []
+      "positive": pos_words,
+      "negative": neg_words
     },
     "domain":
     {
