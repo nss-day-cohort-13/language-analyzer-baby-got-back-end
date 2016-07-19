@@ -19,13 +19,16 @@ class TestDomainAnalysis(unittest.TestCase):
     self.assertNotTrue(True in [punc in self.domain_mod.dom_parsed for punc in string.punctuation])
 
   def test_module_creates_list_of_domain_words_in_sentences(self):
+    self.assertEqual(self.domain_mod.find_keywords, [['man', 'love', 'sentences'], ['love', 'sentences']])
+
+  def test_module_creates_list_of_domain_words_in_sentences(self):
     self.assertEqual(self.domain_mod.find_domains, [['people', 'preference', 'grammar'], ['preference', 'grammar']])
 
   def test_module_creates_dictionary_for_report(self):
     report = {
-      'people': 0.25,
-      'preference': 0.4583,
-      'grammar': 0.2917
+      'people': 0.20,
+      'preference': 0.35,
+      'grammar': 0.45
     }
     self.assertEqual(self.domain_mod.create_report, report)
 
