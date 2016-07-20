@@ -7,16 +7,13 @@ class TestDomainAnalysis(unittest.TestCase):
 
   @classmethod
   def setUpClass(self):
-    self.tokenizer = Bespokenize()
-    self.domain_mod = DomainModule()
-
     self.test_string = 'Oh man, I love sentences. Do you also love sentences?'
-    self.tokenizer.parse_phrase(self.test_string)
+    self.domain_mod = DomainModule(self.test_string)
 
   def test_module_creates_list_of_sentences_without_punctuation(self):
     self.assertIsInstance(self.domain_mod.dom_parsed, list)
     self.assertTrue(len(self.domain_mod.dom_parsed) > 0)
-    self.assertNotTrue(True in [punc in self.domain_mod.dom_parsed for punc in string.punctuation])
+    self.assertFalse(True in [punc in self.domain_mod.dom_parsed for punc in string.punctuation])
 
   def test_module_creates_list_of_keywords_in_sentences(self):
     self.assertEqual(self.domain_mod.find_keywords, [['man', 'love', 'sentences'], ['love', 'sentences']])

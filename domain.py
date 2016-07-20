@@ -1,10 +1,12 @@
+from bespoken import *
+
 class DomainModule:
 
-  def __init__(self):
-    self.dom_parsed = ''
+  def __init__(self, phrase):
+    self.tokenizer = Bespokenize()
+    self.tokenizer.parse_phrase(phrase)
 
-  def process_tokenizer_list(self):
-    pass
+    self.dom_parsed = self.tokenizer.filter_punctuation()
 
   def find_keywords(self):
     pass
