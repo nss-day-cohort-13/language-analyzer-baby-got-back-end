@@ -15,23 +15,26 @@ lexicon = [
       "scientific": ['space', 'exploration', 'moon', 'scientific', 'arguments'],
       "educational": [],
       "politics": [],
-      "relationships": [],
-      "people": ['man', 'men', 'woman', 'women', 'human'],
+      "relationships": ['respect'],
+      "people": ['man', 'men', 'woman', 'women', 'human', 'life', 'people', 'everyone'],
       "grammar": ['sentence', 'sentences'],
       "preference": ['love', 'loves'],
       "goal": ['challenge', 'task', 'goal'],
-      "transportation": ['landing'],
-      "sociological": ['history', 'civilization', 'race']
+      "transportation": ['landing', 'journey'],
+      "sociological": ['history', 'civilization', 'race'],
+      "ideological": ['good'],
+      "time": ['today', 'day']
     },
     "behavior":
     {
-      "aggressive": ['impel'],
-      "passive": [],
+      "aggressive": ['impel', 'arguments', 'stopped', 'judgemental'],
+      "passive": ['encounter', 'let'],
       "mentoring": [],
-      "inquisitive": ['exploration', 'arguments'],
+      "inquisitive": ['exploration', 'arguments', 'different'],
       "transaction": [],
       "explanatory": ['represents'],
-      "planning": ['proceeding', 'task', 'goal']
+      "planning": ['proceeding', 'task', 'goal', 'assumptions'],
+      "social": ['respect', 'meet']
     }
   }
 ]
