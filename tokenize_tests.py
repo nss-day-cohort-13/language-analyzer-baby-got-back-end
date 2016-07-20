@@ -28,11 +28,11 @@ class TestTokenizer(unittest.TestCase):
 
   def test_parse_phrase_output_is_list(self):
     self.assertIsInstance(self.tokenizer.parse_phrase(self.test_string1), list)
-    self.assertIsInstance(self.tokenize.parse_phrase(self.test_string2), list)
+    self.assertIsInstance(self.tokenizer.parse_phrase(self.test_string2), list)
 
   def test_parse_phrase_output_is_saved_as_parsed(self):
     self.assertEqual(self.tokenizer.parse_phrase(self.test_string1), self.tokenizer.parsed)
-    self.assertEqual(self.tokenize.parse_phrase(self.test_string2), self.tokenizer.parsed)
+    self.assertEqual(self.tokenizer.parse_phrase(self.test_string2), self.tokenizer.parsed)
 
   def test_parse_phrase_output_is_parsed_and_lowercase(self):
     self.assertEqual(self.tkn_1.parsed, ["oh", "man", ",", "i", "love", "sentences", "."])
@@ -43,16 +43,16 @@ class TestTokenizer(unittest.TestCase):
     self.assertEqual(self.tkn_2.filter_punctuation(), ["oh", "man", "i", "love", "sentences", "do", "you", "also", "love", "sentences"])
 
   def test_sentences_seperated(self):
-    self.assertEqual(self.tkn_1.seperate_into_sentences(), [["oh", "man", "i", "love", "sentences", "."]])
-    self.assertEqual(self.tkn_2.seperate_into_sentences(), [["oh", "man", "i", "love", "sentences", "."], ["do", "you", "also", "love", "sentences", "?"]])
+    self.assertEqual(self.tkn_1.seperate_into_sentences(), [["oh", "man", ",", "i", "love", "sentences", "."]])
+    self.assertEqual(self.tkn_2.seperate_into_sentences(), [["oh", "man", ",", "i", "love", "sentences", "."], ["do", "you", "also", "love", "sentences", "?"]])
 
   def test_words_counted(self):
     self.assertEqual(self.tkn_1.word_count(), 5)
     self.assertEqual(self.tkn_2.word_count(), 10)
 
-  def test_alpha_num_counted(self):
-    self.assertEqual(self.tkn_1.alphanum_count(), 19)
-    self.assertEqual(self.tkn_2.alphanum_count(), 32)
+  def test_alpha_numeric_characters(self):
+    self.assertEqual(self.tkn_1.alphanum_characters(), "acehilmnostv")
+    self.assertEqual(self.tkn_2.alphanum_characters(), "acdehilmnostuvy")
 
   def test_sentences_counted(self):
     self.assertEqual(self.tkn_1.sentence_count(), 1)
