@@ -17,7 +17,7 @@ class Bespokenize:
 
         return filtered_phrase
 
-    def seperate_into_sentences(self):
+    def separate_into_sentences(self):
         end_punctuation = [".", "?", "!"]
         current_sentence = []
         sentences_list = []

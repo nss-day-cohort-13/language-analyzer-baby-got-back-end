@@ -10,13 +10,14 @@ class TestDomainAnalysis(unittest.TestCase):
     self.test_string = 'Oh man, I love sentences. Do you also love sentences?'
     self.domain_mod = DomainModule(self.test_string)
 
-  def test_module_creates_list_of_sentences_without_punctuation(self):
+  def test_module_creates_list_of_lists_of_sentences(self):
     self.assertIsInstance(self.domain_mod.dom_parsed, list)
     self.assertTrue(len(self.domain_mod.dom_parsed) > 0)
-    self.assertFalse(True in [punc in self.domain_mod.dom_parsed for punc in string.punctuation])
+    self.assertIsInstance(self.domain_mod.dom_parsed[0], list)
 
   def test_module_creates_list_of_keywords_in_sentences(self):
-    self.assertEqual(self.domain_mod.find_keywords, [['man', 'love', 'sentences'], ['love', 'sentences']])
+    self.domain_mod.find_keywords()
+    self.assertEqual(self.domain_mod.keyword_list, [['man', 'love', 'sentences'], ['love', 'sentences']])
 
   def test_module_creates_list_of_domains_present_in_sentences(self):
     self.assertEqual(self.domain_mod.find_domains, [['people', 'preference', 'grammar'], ['preference', 'grammar']])
