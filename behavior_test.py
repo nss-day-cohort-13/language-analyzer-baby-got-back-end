@@ -10,19 +10,14 @@ class TestBehavior(unittest.TestCase):
     self.behavior = Behavior()
     self.tokenizer = Bespokenize()
 
-    # self.test_string = 'I love riding horses! I wonder if they love it, too?'
-    # self.test_parsed = ['I', 'love', 'riding', 'horses', '!', 'I', 'wonder', 'if', 'they', 'love', 'it', 'too', '?']
-    # self.test_parsed_sentence = [['I', 'love', 'riding', 'horses', '!'], ['I', 'wonder', 'if', 'they', 'love', 'it', 'too', '?']]
-    # self.inquisitive_behaviors = ['wonder', '?', 'too']
-    # self.excited_behaviors = ['!']
-    # self.endearment_behaviors = ['love']
+    self.test_string = "The challenge of space exploration and particularly of landing men on the moon represents the greatest challenge which has ever faced the human race. Even if there were no clear scientific or other arguments for proceeding with this task, the whole history of our civilization would still impel men toward the goal."
     self.tokenizer.parse_phrase(self.test_string)
 
   def test_module_separate_tokenize_list_into_sentence_lists_if_multiple(self):
-    self.assertIsInstance(self.test_parsed_sentence[0], list)
+    self.assertIsInstance(self.sentences_list[0], list)
 
   def test_module_assign_behavior_to_punctuation_in_one_sentence(self):
-    self.assertEqual(self.test_parsed_sentence[-1], '!')
+    self.assertEqual(self.test_parsed_sentence[-1], punc)
     self.assertTrue(self.excited_behaviors.__contains__('!'))
     self.assertEqual(self.sentence_behavior_list[-1], 'excited')
 
