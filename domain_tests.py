@@ -11,6 +11,7 @@ class TestDomainAnalysis(unittest.TestCase):
     self.domain_mod = DomainModule(self.test_string)
     self.domain_mod.find_keywords_and_domains()
     self.domain_mod.create_phrase_report()
+    self.domain_mod.calculate_full_report()
 
   def test_module_creates_list_of_lists_of_sentences(self):
     self.assertIsInstance(self.domain_mod.dom_parsed, list)
@@ -34,14 +35,18 @@ class TestDomainAnalysis(unittest.TestCase):
     self.assertEqual(self.domain_mod.domain_list, [['people', 'preference', 'grammar'], ['preference', 'grammar']])
 
   def test_module_creates_phrase_report_by_sentence(self):
+    self.assertIsInstance(self.domain_mod.phrase_report, list)
+    self.assertIsInstance(self.domain_mod.phrase_report[0], dict)
+    self.assertFalse(True in [value <= 0 for key, value in self.domain_mod.phrase_report[0].items()])
+
     report = [{'people': 2, 'preference': 1, 'grammar': 2}, {'preference': 2, 'grammar': 2}]
     self.assertEqual(self.domain_mod.phrase_report, report)
 
   def test_calculate_full_report_maths_correctly(self):
     report = {
-      'people': .20,
-      'preference': .35,
-      'grammar': .45
+      'people': '0.20',
+      'preference': '0.35',
+      'grammar': '0.45'
     }
     self.assertEqual(self.domain_mod.full_report, report)
 

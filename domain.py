@@ -10,6 +10,7 @@ class DomainModule:
     self.dom_parsed = self.tokenizer.filter_punctuation()
     self.keyword_list = list()
     self.domain_list = list()
+    self.full_report = dict()
 
   def find_keywords_and_domains(self):
     for li in self.dom_parsed:
@@ -37,5 +38,24 @@ class DomainModule:
       sentence_report[sentence[len(sentence) - 1]] += 1
       self.phrase_report.append(sentence_report)
 
-  def calculate_print_report(self):
-    pass
+  def calculate_full_report(self):
+    percentage_report = list()
+    total_domains = set()
+    for sentence_report in self.phrase_report:
+      dom_count = 0
+      partial_report = dict()
+      for domain, value in sentence_report.items():
+        total_domains.add(domain)
+        dom_count += value
+      for domain, value in sentence_report.items():
+        partial_report[domain] = format(value / dom_count)
+      percentage_report.append(partial_report)
+    for domain in total_domains:
+      self.full_report[domain] = 0
+      for partial in percentage_report:
+        try:
+          self.full_report[domain] += float(partial[domain])
+        except:
+          pass
+      self.full_report[domain] /= len(self.phrase_report)
+      self.full_report[domain] = format(self.full_report[domain], '.2f')
