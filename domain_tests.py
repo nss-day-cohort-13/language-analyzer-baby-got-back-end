@@ -9,6 +9,7 @@ class TestDomainAnalysis(unittest.TestCase):
   def setUpClass(self):
     self.test_string = 'Oh man, I love sentences. Do you also love sentences?'
     self.domain_mod = DomainModule(self.test_string)
+    self.domain_mod.find_keywords_and_domains()
 
   def test_module_creates_list_of_lists_of_sentences(self):
     self.assertIsInstance(self.domain_mod.dom_parsed, list)
@@ -16,11 +17,20 @@ class TestDomainAnalysis(unittest.TestCase):
     self.assertIsInstance(self.domain_mod.dom_parsed[0], list)
 
   def test_module_creates_list_of_keywords_in_sentences(self):
-    self.domain_mod.find_keywords()
+    self.assertIsInstance(self.domain_mod.keyword_list, list)
+    self.assertTrue(len(self.domain_mod.keyword_list[0]) > 0)
+    self.assertIsInstance(self.domain_mod.keyword_list, list)
+    self.assertTrue(len(self.domain_mod.keyword_list[0]) > 0)
+    self.assertIsInstance(self.domain_mod.keyword_list[0][0], str)
     self.assertEqual(self.domain_mod.keyword_list, [['man', 'love', 'sentences'], ['love', 'sentences']])
 
   def test_module_creates_list_of_domains_present_in_sentences(self):
-    self.assertEqual(self.domain_mod.find_domains, [['people', 'preference', 'grammar'], ['preference', 'grammar']])
+    self.assertIsInstance(self.domain_mod.domain_list, list)
+    self.assertTrue(len(self.domain_mod.domain_list[0]) > 0)
+    self.assertIsInstance(self.domain_mod.domain_list, list)
+    self.assertTrue(len(self.domain_mod.domain_list[0]) > 0)
+    self.assertIsInstance(self.domain_mod.domain_list[0][0], str)
+    self.assertEqual(self.domain_mod.domain_list, [['people', 'preference', 'grammar'], ['preference', 'grammar']])
 
   def test_module_creates_dictionary_for_report(self):
     report = {
