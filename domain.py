@@ -7,7 +7,7 @@ class DomainModule:
     self.tokenizer = Bespokenize()
     self.tokenizer.parse_phrase(phrase)
 
-    self.dom_parsed = self.tokenizer.separate_into_sentences()
+    self.dom_parsed = self.tokenizer.filter_punctuation()
     self.keyword_list = list()
     self.domain_list = list()
 
@@ -24,9 +24,18 @@ class DomainModule:
       self.keyword_list.append(sentence_keywords)
       self.domain_list.append(sentence_domains)
 
-  def find_domains(self):
-    pass
+  def create_phrase_report(self):
+    self.phrase_report = list()
+    for sentence in self.domain_list:
+      sentence_report = dict()
+      for keyword in sentence:
+        if keyword in sentence_report.keys():
+          sentence_report[keyword] += 1
+        else:
+          sentence_report[keyword] = 1
+      sentence_report[sentence[0]] += 1
+      sentence_report[sentence[len(sentence) - 1]] += 1
+      self.phrase_report.append(sentence_report)
 
-
-  def create_report(self):
+  def calculate_print_report(self):
     pass
