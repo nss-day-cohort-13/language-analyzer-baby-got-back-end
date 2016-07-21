@@ -34,7 +34,6 @@ class Bespokenize:
             filtered_sentences_list.append(filtered_sentence)
         return filtered_sentences_list
 
-
     def word_count(self):
         sentences = self.filter_punctuation()
         words_per_sentence = []
@@ -42,6 +41,15 @@ class Bespokenize:
             words_per_sentence.extend([len(sentence)])
 
         return words_per_sentence
+
+    def total_word_count(self):
+        sentence_word_count = self.word_count()
+        total_words = 0
+
+        for count in sentence_word_count:
+            total_words += count
+
+        return total_words
 
     def alphanum_characters(self):
         alphanums_used = set()
