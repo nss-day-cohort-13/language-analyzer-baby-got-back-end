@@ -23,11 +23,12 @@ class Sentiment:
     self.tokenizer.parse_phrase(phrase)
 
     # self.behavior = Behavior(phrase)
-    self.sentence_list = self.tokenizer.seperate_into_sentences()
+    self.sentence_list = self.tokenizer.filter_punctuation()
     print(self.sentence_list)
-    self.positive_sentiment_list = []
-    self.negative_sentiment_list = []
-    self.neutral_sentiment_list =[]
+    self.sentence_count = []
+    # self.positive_sentiment_list = []
+    # self.negative_sentiment_list = []
+    # self.neutral_sentiment_list =[]
     self.process_sentences()
 
   def get_phrase(self):
@@ -35,7 +36,7 @@ class Sentiment:
     return phrase
 
 
-  def calculate_sentiment(self, words_to_analyze_list):
+  def calculate_word_count(self, words_to_analyze_list):
     positive_count = 0
     negative_count = 0
     neutral_count = 0
@@ -54,16 +55,19 @@ class Sentiment:
 
   def process_sentences(self):
     for sentence in self.sentence_list:
-      positive_count, negative_count, neutral_count = self.calculate_sentiment(sentence)
-      self.positive_sentiment_list.append(positive_count)
-      self.negative_sentiment_list.append(negative_count)
-      self.neutral_sentiment_list.append(neutral_count)
+      new_sentence_list = []
+      positive_count, negative_count, neutral_count = self.calculate_word_count(sentence)
+      new_sentence_list.append(positive_count)
+      new_sentence_list.append(negative_count)
+      new_sentence_list.append(neutral_count)
+      self.sentence_count.append(new_sentence_list)
+    print(self.sentence_count)
 
 newobj = Sentiment()
 # newobj = Sentiment(phrase='Hello there. Today is good')
-print(newobj.positive_sentiment_list)
-print(newobj.negative_sentiment_list)
-print(newobj.neutral_sentiment_list)
+# print(newobj.positive_sentiment_list)
+# print(newobj.negative_sentiment_list)
+# print(newobj.neutral_sentiment_list)
 
 
   # def calculate_positive_percent(self, phrase):

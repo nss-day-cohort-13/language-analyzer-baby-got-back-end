@@ -11,8 +11,12 @@ class TestSentiment(unittest.TestCase):
     self.test_string = "The challenge of space exploration and particularly of landing men on the moon represents the greatest challenge which has ever faced the human race. Even if there were no clear scientific or other arguments for proceeding with this task, the whole history of our civilization would still impel men toward the goal."
     self.sentiment = Sentiment(self.test_string)
 
-  def test_calculate_sentiment(self):
-    self.assertEqual(self.sentiment.calculate_sentiment)
+  def test_calculate_word_count(self):
+    positive_count, negative_count, neutral_count = self.sentiment.calculate_word_count(self.sentiment.sentence_list[0])
+    self.assertEqual(positive_count, 1)
+    self.assertEqual(negative_count, 2)
+    self.assertEqual(neutral_count, 21)
+
 
   def test_module_removes_punctuation(self):
     self.assertFalse(True in [punc in self.sentiment.sent_parsed for punc in string.punctuation])
