@@ -37,11 +37,11 @@ class Bespokenize:
 
     def word_count(self):
         sentences = self.filter_punctuation()
-        total_word_count = 0
+        words_per_sentence = []
         for sentence in sentences:
-            total_word_count += len(sentence)
+            words_per_sentence.extend([len(sentence)])
 
-        return total_word_count
+        return words_per_sentence
 
     def alphanum_characters(self):
         alphanums_used = set()
