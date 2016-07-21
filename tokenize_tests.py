@@ -46,9 +46,9 @@ class TestTokenizer(unittest.TestCase):
     self.assertEqual(self.tkn_1.seperate_into_sentences(), [["oh", "man", ",", "i", "love", "sentences", "."]])
     self.assertEqual(self.tkn_2.seperate_into_sentences(), [["oh", "man", ",", "i", "love", "sentences", "."], ["do", "you", "also", "love", "sentences", "?"]])
 
-  def test_words_counted(self):
-    self.assertEqual(self.tkn_1.word_count(), 5)
-    self.assertEqual(self.tkn_2.word_count(), 10)
+  def test_words_counted_per_sentence(self):
+    self.assertEqual(self.tkn_1.word_count(), [5])
+    self.assertEqual(self.tkn_2.word_count(), [5, 5])
 
   def test_alpha_numeric_characters(self):
     self.assertEqual(self.tkn_1.alphanum_characters(), "acehilmnostv")
