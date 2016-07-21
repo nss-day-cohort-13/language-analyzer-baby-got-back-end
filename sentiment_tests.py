@@ -11,8 +11,8 @@ class TestSentiment(unittest.TestCase):
     self.test_string = "The challenge of space exploration and particularly of landing men on the moon represents the greatest challenge which has ever faced the human race. Even if there were no clear scientific or other arguments for proceeding with this task, the whole history of our civilization would still impel men toward the goal."
     self.sentiment = Sentiment(self.test_string)
 
-  def test_passed_behavior_anal_input(self):
-    self.assert
+  def test_calculate_sentiment(self):
+    self.assertEqual(self.sentiment.calculate_sentiment)
 
   def test_module_removes_punctuation(self):
     self.assertFalse(True in [punc in self.sentiment.sent_parsed for punc in string.punctuation])
