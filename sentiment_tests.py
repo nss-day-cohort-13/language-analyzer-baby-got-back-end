@@ -23,10 +23,14 @@ class TestSentiment(unittest.TestCase):
     test_count = [[1, 2, 21], [2, 1, 25], [0, 1, 16], [2, 0, 16]]
     self.assertEqual(self.sentiment.sentence_count, test_count)
 
-
   def test_module_removes_punctuation(self):
     self.assertFalse(True in [punc in self.sentiment.sentence_list for punc in string.punctuation])
     self.assertFalse(self.sentiment.sentence_list == '')
+
+
+
+
+
 
   def test_calculate_positive_percentage(self):
     self.assertEqual(self.sentiment.calculate_positive_percent(self.sentiment.sentence_list), 0.3)
@@ -41,6 +45,9 @@ class TestSentiment(unittest.TestCase):
       'neutral': .5
     }
     self.assertEqual(self.sentiment.calculate_sentence(self.sentiment.sentence_list), report)
+
+
+
 
 
 if __name__ == '__main__':
