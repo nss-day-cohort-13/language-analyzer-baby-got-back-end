@@ -7,7 +7,7 @@ class Bespokenize:
     Methods:
     -----------------
     parse_phrase
-    seperate_into_sentences
+    separate_into_sentences
     filter_punctuation
     word_count
     total_word_count
@@ -27,7 +27,7 @@ class Bespokenize:
         self.parsed = re.findall(r"[\w']+|[.,!?;]", phrase)
         return self.parsed
 
-    def seperate_into_sentences(self):
+    def separate_into_sentences(self):
         """Lists sentences present in self.parsed
 
         Method arguments:
@@ -56,7 +56,7 @@ class Bespokenize:
         n/a
         """
 
-        sentences_list = self.seperate_into_sentences()
+        sentences_list = self.separate_into_sentences()
         punctuation = string.punctuation
         filtered_sentences_list = []
 
@@ -123,7 +123,7 @@ class Bespokenize:
         n/a
         """
 
-        sentences = self.seperate_into_sentences()
+        sentences = self.separate_into_sentences()
         return len(sentences)
 
     def get_position(self, word):
