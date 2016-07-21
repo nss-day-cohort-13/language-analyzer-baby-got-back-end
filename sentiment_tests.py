@@ -1,4 +1,6 @@
 import unittest
+import string
+from bespoken import *
 from sentiment import *
 
 class TestSentiment(unittest.TestCase):
@@ -6,26 +8,30 @@ class TestSentiment(unittest.TestCase):
   @classmethod
   def setUpClass(self):
 
-    self.sentiment = Sentiment()
+    self.test_string = "The challenge of space exploration and particularly of landing men on the moon represents the greatest challenge which has ever faced the human race. Even if there were no clear scientific or other arguments for proceeding with this task, the whole history of our civilization would still impel men toward the goal."
+    self.sentiment = Sentiment(self.test_string)
 
-    self.test_pos_word_count = ["The", "man", "was", "fond", "of", "fish", ",", "he", "loved", "them", "a", "great", "deal", "."] # 4 pos words
-    self.test_neg_word_count = ["The", "man", "was", "dejected", "by", "fish", "," "he", "hated", "them", "and", "thought", "they", "were", "dumb"] # 3 neg words
-    self.test_weighted_more_positive = ["The", "great", "man", "was", "fond", ".", "He", "loved", "dejectged", "fish"] # pos + 2
-    self.test_weighted_more_negative =  ["The", "dejected", "fish", "hated", "the", "man"] # neg 1
+  def test_passed_behavior_anal_input(self):
+    self.assert
 
+  def test_module_removes_punctuation(self):
+    self.assertFalse(True in [punc in self.sentiment.sent_parsed for punc in string.punctuation])
+    self.assertFalse(self.sentiment.sent_parsed == '')
 
+  def test_calculate_positive_percentage(self):
+    self.assertEqual(self.sentiment.calculate_positive_percent(self.sentiment.sent_parsed), 0.3)
 
-  def test_positive_words_present(self):
-    self.assertEqual(self.sentiment.pos_sentiment(self.test_pos_word_count), 4)
+  def test_calculate_negative_percentage(self):
+    self.assertEqual(self.sentiment.calculate_negative_percent(self.sentiment.sent_parsed), 0.2)
 
-  def test_negitive_words_present(self):
-    self.assertEqual(self.sentiment.neg_sentiment(self.test_neg_word_count), 3)
+  def test_final_sentence_calculation(self):
+    report = {
+      'positive': .3,
+      'negative': .2,
+      'neutral': .5
+    }
+    self.assertEqual(self.sentiment.calculate_sentence(self.sentiment.sent_parsed), report)
 
-  def test_weighted_more_positive(self):
-    self.assertEqual(self.sentiment.weighted_output(self.test_weighted_more_positive), 2)
-
-  def test_weighted_more_negitive(self):
-    self.assertEqual(self.sentiment.weighted_output(self.test_weighted_more_negative), -3)
 
 if __name__ == '__main__':
   unittest.main()
