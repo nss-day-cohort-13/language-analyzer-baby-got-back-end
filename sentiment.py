@@ -21,15 +21,13 @@ class Sentiment:
     self.tokenizer = Bespokenize()
     print(phrase)
     self.tokenizer.parse_phrase(phrase)
-
-    # self.behavior = Behavior(phrase)
     self.sentence_list = self.tokenizer.filter_punctuation()
     print(self.sentence_list)
     self.sentence_count = []
+    # self.behavior = Behavior(phrase)
     # self.positive_sentiment_list = []
     # self.negative_sentiment_list = []
     # self.neutral_sentiment_list =[]
-    self.process_sentences()
 
   def get_phrase(self):
     phrase = 'The challenge of space exploration and particularly of landing men on the moon represents the greatest challenge which has ever faced the human race. Even if there were no clear scientific or other arguments for proceeding with this task, the whole history of our civilization would still impel men toward the goal. How would your life be different if you stopped making negative judgmental assumptions about people you encounter? Let today be the day you look for the good in everyone you meet and respect their journey.'
@@ -60,27 +58,27 @@ class Sentiment:
       new_sentence_list.append(positive_count)
       new_sentence_list.append(negative_count)
       new_sentence_list.append(neutral_count)
+      # print(new_sentence_list)
       self.sentence_count.append(new_sentence_list)
     print(self.sentence_count)
+
+
+
+  def calculate_positive_percent(self, phrase):
+    pass
+
+  def calculate_negative_percent(self, phrase):
+    pass
+
+  def calculate_sentence(self, phrase):
+    pass
+
+  def pos_sentiment(self, phrase):
+    import pos_words
+    return 4
 
 newobj = Sentiment()
 # newobj = Sentiment(phrase='Hello there. Today is good')
 # print(newobj.positive_sentiment_list)
 # print(newobj.negative_sentiment_list)
 # print(newobj.neutral_sentiment_list)
-
-
-  # def calculate_positive_percent(self, phrase):
-
-  #   pass
-
-  # def calculate_negative_percent(self, phrase):
-  #   pass
-
-  # def calculate_sentence(self, phrase):
-  #   pass
-
-  # def pos_sentiment(self, phrase):
-  #   import pos_words
-  #   return 4
-
