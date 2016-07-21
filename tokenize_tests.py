@@ -39,8 +39,8 @@ class TestTokenizer(unittest.TestCase):
     self.assertEqual(self.tkn_2.parsed, ["oh", "man", ",", "i", "love", "sentences", ".", "do", "you", "also", "love", "sentences", "?"])
 
   def test_punctuation_is_filtered(self):
-    self.assertEqual(self.tkn_1.filter_punctuation(), ["oh", "man", "i", "love", "sentences"])
-    self.assertEqual(self.tkn_2.filter_punctuation(), ["oh", "man", "i", "love", "sentences", "do", "you", "also", "love", "sentences"])
+    self.assertEqual(self.tkn_1.filter_punctuation(), [["oh", "man", "i", "love", "sentences"]])
+    self.assertEqual(self.tkn_2.filter_punctuation(), [["oh", "man", "i", "love", "sentences"], ["do", "you", "also", "love", "sentences"]])
 
   def test_sentences_seperated(self):
     self.assertEqual(self.tkn_1.seperate_into_sentences(), [["oh", "man", ",", "i", "love", "sentences", "."]])
