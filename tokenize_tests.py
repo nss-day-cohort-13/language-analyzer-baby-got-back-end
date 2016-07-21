@@ -22,9 +22,6 @@ class TestTokenizer(unittest.TestCase):
     self.tkn_2 = Bespokenize()
     self.tkn_2.parse_phrase(self.test_string2)
 
-  def test_tokenize_string_input_is_string(self):
-    self.assertIsInstance(self.test_string1, str)
-    self.assertIsInstance(self.test_string2, str)
 
   def test_parse_phrase_output_is_list(self):
     self.assertIsInstance(self.tokenizer.parse_phrase(self.test_string1), list)
@@ -39,16 +36,20 @@ class TestTokenizer(unittest.TestCase):
     self.assertEqual(self.tkn_2.parsed, ["oh", "man", ",", "i", "love", "sentences", ".", "do", "you", "also", "love", "sentences", "?"])
 
   def test_punctuation_is_filtered(self):
-    self.assertEqual(self.tkn_1.filter_punctuation(), ["oh", "man", "i", "love", "sentences"])
-    self.assertEqual(self.tkn_2.filter_punctuation(), ["oh", "man", "i", "love", "sentences", "do", "you", "also", "love", "sentences"])
+    self.assertEqual(self.tkn_1.filter_punctuation(), [["oh", "man", "i", "love", "sentences"]])
+    self.assertEqual(self.tkn_2.filter_punctuation(), [["oh", "man", "i", "love", "sentences"], ["do", "you", "also", "love", "sentences"]])
 
   def test_sentences_seperated(self):
     self.assertEqual(self.tkn_1.seperate_into_sentences(), [["oh", "man", ",", "i", "love", "sentences", "."]])
     self.assertEqual(self.tkn_2.seperate_into_sentences(), [["oh", "man", ",", "i", "love", "sentences", "."], ["do", "you", "also", "love", "sentences", "?"]])
 
-  def test_words_counted(self):
-    self.assertEqual(self.tkn_1.word_count(), 5)
-    self.assertEqual(self.tkn_2.word_count(), 10)
+  def test_words_counted_per_sentence(self):
+    self.assertEqual(self.tkn_1.word_count(), [5])
+    self.assertEqual(self.tkn_2.word_count(), [5, 5])
+
+  def test_total_word_count(self):
+    self.assertEqual(self.tkn_1.total_word_count(), 5)
+    self.assertEqual(self.tkn_2.total_word_count(), 10)
 
   def test_alpha_numeric_characters(self):
     self.assertEqual(self.tkn_1.alphanum_characters(), "acehilmnostv")

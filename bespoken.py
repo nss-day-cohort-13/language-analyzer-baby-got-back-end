@@ -7,17 +7,7 @@ class Bespokenize:
         self.parsed = re.findall(r"[\w']+|[.,!?;]", phrase)
         return self.parsed
 
-    def filter_punctuation(self):
-        punctuation = string.punctuation
-        filtered_phrase = []
-
-        for item in self.parsed:
-            if item not in punctuation:
-                filtered_phrase.append(item)
-
-        return filtered_phrase
-
-    def separate_into_sentences(self):
+    def seperate_into_sentences(self):
         end_punctuation = [".", "?", "!"]
         current_sentence = []
         sentences_list = []
@@ -31,9 +21,35 @@ class Bespokenize:
 
         return sentences_list
 
+    def filter_punctuation(self):
+        sentences_list = self.seperate_into_sentences()
+        punctuation = string.punctuation
+        filtered_sentences_list = []
+
+        for sentence in sentences_list:
+            filtered_sentence = []
+            for item in sentence:
+                if item not in punctuation:
+                    filtered_sentence.append(item)
+            filtered_sentences_list.append(filtered_sentence)
+        return filtered_sentences_list
+
     def word_count(self):
-        words = self.filter_punctuation()
-        return len(words)
+        sentences = self.filter_punctuation()
+        words_per_sentence = []
+        for sentence in sentences:
+            words_per_sentence.extend([len(sentence)])
+
+        return words_per_sentence
+
+    def total_word_count(self):
+        sentence_word_count = self.word_count()
+        total_words = 0
+
+        for count in sentence_word_count:
+            total_words += count
+
+        return total_words
 
     def alphanum_characters(self):
         alphanums_used = set()
@@ -51,5 +67,10 @@ class Bespokenize:
         return len(sentences)
 
     def get_position(self, word):
-        filtered_phrase = self.filter_punctuation()
+        sentences = self.filter_punctuation()
+        filtered_phrase = []
+
+        for sentence in sentences:
+            filtered_phrase += sentence
+
         return filtered_phrase.index(word) + 1
