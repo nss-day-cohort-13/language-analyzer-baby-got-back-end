@@ -148,9 +148,9 @@ class Sentiment:
     print(' ')
     print('---------- SENTIMENT ANALYSIS RESULTS ----------')
     print(' ')
-    print('Positive: {0}'.format(sentiment_percentages[0]))
-    print('Negative: {0}'.format(sentiment_percentages[1]))
-    print('Neutral: {0}'.format(sentiment_percentages[2]))
+    print('  Positive: {0}'.format(sentiment_percentages[0]))
+    print('  Negative: {0}'.format(sentiment_percentages[1]))
+    print('  Neutral: {0}'.format(sentiment_percentages[2]))
     print(' ')
 
 
