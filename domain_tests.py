@@ -7,30 +7,48 @@ class TestDomainAnalysis(unittest.TestCase):
 
   @classmethod
   def setUpClass(self):
-    self.tokenizer = Bespokenize()
-    self.domain_mod = DomainModule()
-
     self.test_string = 'Oh man, I love sentences. Do you also love sentences?'
-    self.tokenizer.parse_phrase(self.test_string)
+    self.domain_mod = DomainModule(self.test_string)
+    self.domain_mod.find_keywords_and_domains()
+    self.domain_mod.create_phrase_report()
+    self.domain_mod.calculate_full_report()
 
-  def test_module_creates_list_of_sentences_without_punctuation(self):
+  def test_module_creates_list_of_lists_of_sentences(self):
     self.assertIsInstance(self.domain_mod.dom_parsed, list)
     self.assertTrue(len(self.domain_mod.dom_parsed) > 0)
-    self.assertNotTrue(True in [punc in self.domain_mod.dom_parsed for punc in string.punctuation])
+    self.assertIsInstance(self.domain_mod.dom_parsed[0], list)
 
   def test_module_creates_list_of_keywords_in_sentences(self):
-    self.assertEqual(self.domain_mod.find_keywords, [['man', 'love', 'sentences'], ['love', 'sentences']])
+    self.assertIsInstance(self.domain_mod.keyword_list, list)
+    self.assertTrue(len(self.domain_mod.keyword_list[0]) > 0)
+    self.assertIsInstance(self.domain_mod.keyword_list, list)
+    self.assertTrue(len(self.domain_mod.keyword_list[0]) > 0)
+    self.assertIsInstance(self.domain_mod.keyword_list[0][0], str)
+    self.assertEqual(self.domain_mod.keyword_list, [['man', 'love', 'sentences'], ['love', 'sentences']])
 
   def test_module_creates_list_of_domains_present_in_sentences(self):
-    self.assertEqual(self.domain_mod.find_domains, [['people', 'preference', 'grammar'], ['preference', 'grammar']])
+    self.assertIsInstance(self.domain_mod.domain_list, list)
+    self.assertTrue(len(self.domain_mod.domain_list[0]) > 0)
+    self.assertIsInstance(self.domain_mod.domain_list, list)
+    self.assertTrue(len(self.domain_mod.domain_list[0]) > 0)
+    self.assertIsInstance(self.domain_mod.domain_list[0][0], str)
+    self.assertEqual(self.domain_mod.domain_list, [['people', 'preference', 'grammar'], ['preference', 'grammar']])
 
-  def test_module_creates_dictionary_for_report(self):
+  def test_module_creates_phrase_report_by_sentence(self):
+    self.assertIsInstance(self.domain_mod.phrase_report, list)
+    self.assertIsInstance(self.domain_mod.phrase_report[0], dict)
+    self.assertFalse(True in [value <= 0 for key, value in self.domain_mod.phrase_report[0].items()])
+
+    report = [{'people': 2, 'preference': 1, 'grammar': 2}, {'preference': 2, 'grammar': 2}]
+    self.assertEqual(self.domain_mod.phrase_report, report)
+
+  def test_calculate_full_report_maths_correctly(self):
     report = {
-      'people': 0.20,
-      'preference': 0.35,
-      'grammar': 0.45
+      'people': '0.20',
+      'preference': '0.35',
+      'grammar': '0.45'
     }
-    self.assertEqual(self.domain_mod.create_report, report)
+    self.assertEqual(self.domain_mod.full_report, report)
 
 if __name__ == '__main__':
   unittest.main()
