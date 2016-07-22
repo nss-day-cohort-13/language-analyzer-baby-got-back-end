@@ -14,8 +14,8 @@ class LanguageAnalyzer:
        phrase - the phrase to be analyzed; passed down for processing
                 in each discrete analysis module
     '''
-    # self.sentiment_module = Sentiment(phrase)
-    # self.behavior_module = Behavior(phrase)
+    self.sentiment_module = Sentiment(phrase)
+    self.behavior_module = Behavior(phrase)
     self.domain_module = Domain(phrase)
 
   def lang_run_all(self):
@@ -25,6 +25,6 @@ class LanguageAnalyzer:
     -----------------
     n/as
     '''
-    # self.sentiment_module.run_all_sentiment()
-    # self.behavior_module.run_all_behavior()
+    self.sentiment_module.run_all_sentiment()
+    self.behavior_module.run_all_behavior()
     self.domain_module.run_all_domain()
