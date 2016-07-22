@@ -8,7 +8,7 @@ class TestDomainAnalysis(unittest.TestCase):
   @classmethod
   def setUpClass(self):
     self.test_string = 'Oh man, I love sentences. Do you also love sentences?'
-    self.domain_mod = DomainModule(self.test_string)
+    self.domain_mod = Domain(self.test_string)
     self.domain_mod.find_keywords_and_domains()
     self.domain_mod.create_phrase_report()
     self.domain_mod.calculate_full_report()
