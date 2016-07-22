@@ -49,6 +49,7 @@ class Bespokenize:
         return sentences_list
 
     def filter_punctuation(self):
+
         """Lists sentences without punctuation from self.parsed
 
         Method arguments:
@@ -67,6 +68,8 @@ class Bespokenize:
                     filtered_sentence.append(item)
             filtered_sentences_list.append(filtered_sentence)
         return filtered_sentences_list
+
+
 
     def word_count(self):
         """List number of words in each sentence in self.parsed
@@ -127,6 +130,7 @@ class Bespokenize:
         return len(sentences)
 
     def get_position(self, word):
+
         """Lists the position of a word based on all words in self.parsed
 
         Method arguments:
