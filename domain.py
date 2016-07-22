@@ -1,7 +1,7 @@
 from lexicon import *
 from bespoken import *
 
-class DomainModule:
+class Domain:
 
   def __init__(self, phrase):
     '''When this class is instantiated, it...
