@@ -20,7 +20,6 @@ class Behavior:
             if word == keyword:
               self.sentence_behaviors.append(behavior)
 
-    print(self.sentence_behavior_list)
     return self.sentence_behavior_list
 
   def find_weighted_behavior_value(self):
@@ -58,12 +57,11 @@ class Behavior:
       rounded_final = float("{0:.2f}".format(value))
       self.report[behavior] = rounded_final
 
-    print(self.report)
     return self.report
 
   def print_report(self):
     print(' ')
-    print('---------- DOMAIN ANALYSIS RESULTS ----------')
+    print('---------- BEHAVIOR ANALYSIS RESULTS ----------')
     print(' ')
     for key, value in self.report.items():
       print('  {0}: {1}'.format(key.capitalize(), value))
