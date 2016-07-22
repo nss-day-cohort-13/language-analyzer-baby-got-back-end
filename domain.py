@@ -99,3 +99,17 @@ class DomainModule:
           pass
       self.full_report[domain] /= len(self.phrase_report)
       self.full_report[domain] = format(self.full_report[domain], '.2f')
+
+  def print_report(self):
+    '''Renders self.full_report as a readable report when the program runs
+
+       Method arguments:
+       -----------------
+       n/a
+    '''
+    print(' ')
+    print('---------- DOMAIN ANALYSIS RESULTS ----------')
+    print(' ')
+    for key, value in self.full_report.items():
+      print('  {0}: {1}'.format(key.capitalize(), value))
+    print(' ')
