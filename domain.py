@@ -113,3 +113,16 @@ class DomainModule:
     for key, value in self.full_report.items():
       print('  {0}: {1}'.format(key.capitalize(), value))
     print(' ')
+
+  def run_all_domain(self):
+    '''Calls all methods on this class needed to create a report
+       of the domain analysis of a phrase
+
+       Method arguments:
+       -----------------
+       n/a
+    '''
+    self.find_keywords_and_domains()
+    self.create_phrase_report()
+    self.calculate_full_report()
+    self.print_report()
