@@ -2,14 +2,15 @@ import unittest
 import string
 from bespoken import *
 from sentiment import *
+from behavior import *
 
 class TestSentiment(unittest.TestCase):
 
   @classmethod
   def setUpClass(self):
-
     self.test_string = "The challenge of space exploration and particularly of landing men on the moon represents the greatest challenge which has ever faced the human race. Even if there were no clear scientific or other arguments for proceeding with this task, the whole history of our civilization would still impel men toward the goal. How would your life be different if you stopped making negative judgmental assumptions about people you encounter? Let today be the day you look for the good in everyone you meet and respect their journey."
     self.sentiment = Sentiment(self.test_string)
+
 
   def test_calculate_word_count(self):
     positive_count, negative_count, neutral_count = self.sentiment.calculate_word_count(self.sentiment.sentence_list[0])
@@ -27,26 +28,21 @@ class TestSentiment(unittest.TestCase):
     self.assertFalse(True in [punc in self.sentiment.sentence_list for punc in string.punctuation])
     self.assertFalse(self.sentiment.sentence_list == '')
 
+  def test_behavior_multiplier_totaled(self):
+    self.assertEqual(self.sentiment.calculate_multipliers(), [6, 2, 3, 2])
 
 
 
 
-
-  def test_calculate_positive_percentage(self):
-    self.assertEqual(self.sentiment.calculate_positive_percent(self.sentiment.sentence_list), 0.3)
-
-  def test_calculate_negative_percentage(self):
-    self.assertEqual(self.sentiment.calculate_negative_percent(self.sentiment.sentence_list), 0.2)
 
   def test_final_sentence_calculation(self):
+    self.sentiment.process_sentences()
     report = {
-      'positive': .3,
-      'negative': .2,
-      'neutral': .5
+      'positive': 0.04,
+      'negative': 0.05,
+      'neutral': 0.90
     }
-    self.assertEqual(self.sentiment.calculate_sentence(self.sentiment.sentence_list), report)
-
-
+    self.assertEqual(self.sentiment.calculate_sentence(), report)
 
 
 
