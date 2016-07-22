@@ -4,6 +4,22 @@ from bespoken import *
 class DomainModule:
 
   def __init__(self, phrase):
+    '''When this class is instantiated, it...
+      1) gets an instance of a tokenizer
+      2) parses the phrase passed in
+      3) separates that phrase into sentences
+          and
+      4) filters the punctuation from the phrase
+
+      self.keyword_list - a list that stores domain keywords found in each sentence by sentence
+      self.domain_list - a list that stores the domains represented in each sentence by sentence
+      self.full_report - a dictionary that has each domain represented in the entire phrase as a single key,
+                         and its total percentage in the phrase as the value
+      Arguments:
+      -----------------
+      phrase - The phrase being analyzed, passed in when instantiated by the top-level
+               language analysis module.
+    '''
     self.tokenizer = Bespokenize()
     self.tokenizer.parse_phrase(phrase)
 
@@ -13,6 +29,14 @@ class DomainModule:
     self.full_report = dict()
 
   def find_keywords_and_domains(self):
+    '''Loops over each word in each sentence in the phrase being analyzed
+       and populates self.domain_list and self.keyword_list with matched
+       domains and domain keywords respectively.
+
+       Method arguments:
+       -----------------
+       n/a
+    '''
     for li in self.dom_parsed:
       sentence_keywords = list()
       sentence_domains = list()
@@ -26,6 +50,13 @@ class DomainModule:
       self.domain_list.append(sentence_domains)
 
   def create_phrase_report(self):
+    '''Populates self.phrase_report with lists of single
+       reports for each sentence in the phrase being analyzed.
+
+       Method arguments:
+       -----------------
+       n/a
+    '''
     self.phrase_report = list()
     for sentence in self.domain_list:
       sentence_report = dict()
@@ -39,6 +70,15 @@ class DomainModule:
       self.phrase_report.append(sentence_report)
 
   def calculate_full_report(self):
+    '''Using self.phrase_report, this function creates a final report of
+       analysis of the full phrase in a dictionary where each key represents
+       a domain present in the phrase and its value is the domain's overall
+       percentage in the full phrase. Full report is saved in self.full_report.
+
+       Method arguments:
+       -----------------
+       n/a
+    '''
     percentage_report = list()
     total_domains = set()
     for sentence_report in self.phrase_report:
