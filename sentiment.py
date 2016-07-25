@@ -1,6 +1,7 @@
 from pos_words import *
 from neg_words import *
 from bespoken import *
+from behavior import *
 
 class Sentiment:
   """Contains methods for Sentiment Class
@@ -19,7 +20,7 @@ class Sentiment:
   calculate_sentence
   """
 
-  def __init__(self, phrase=None):
+  def __init__(self, phrase):
     """Initialization
     If incoming phrase present - use
     Else call get_phrase
@@ -34,9 +35,12 @@ class Sentiment:
       "planning": 2,
       "social": 3
     }
-    if not phrase:
-      phrase = self.get_phrase()
-    self.behavior_dict = [['aggressive', 'inquisitive'], ['mentoring'], ['social'], ['planning']]
+    # if not phrase:
+    #   phrase = self.get_phrase()
+    self.behavior = Behavior(phrase)
+    # self.behavior_dict = [['aggressive', 'inquisitive'], ['mentoring'], ['social'], ['planning']]
+    self.behavior.find_behaviors()
+    self.behavior_dict = self.behavior.sentence_behavior_list
     self.tokenizer = Bespokenize()
     self.tokenizer.parse_phrase(phrase)
     self.sentence_list = self.tokenizer.filter_punctuation()
@@ -48,14 +52,14 @@ class Sentiment:
     self.calculate_sentence()
 
 
-  def get_phrase(self):
-    """If called provied phrase for sentiment analysis.
+  # def get_phrase(self):
+  #   """If called provied phrase for sentiment analysis.
 
-    Returns: phrase
+  #   Returns: phrase
 
-    """
-    phrase = 'The challenge of space exploration and particularly of landing men on the moon represents the greatest challenge which has ever faced the human race. Even if there were no clear scientific or other arguments for proceeding with this task, the whole history of our civilization would still impel men toward the goal. How would your life be different if you stopped making negative judgmental assumptions about people you encounter? Let today be the day you look for the good in everyone you meet and respect their journey.'
-    return phrase
+  #   """
+  #   phrase = 'The challenge of space exploration and particularly of landing men on the moon represents the greatest challenge which has ever faced the human race. Even if there were no clear scientific or other arguments for proceeding with this task, the whole history of our civilization would still impel men toward the goal. How would your life be different if you stopped making negative judgmental assumptions about people you encounter? Let today be the day you look for the good in everyone you meet and respect their journey.'
+  #   return phrase
 
 
   def calculate_word_count(self, words_to_analyze_list):
@@ -96,9 +100,11 @@ class Sentiment:
 
     """
     multipliers_list = []
+    # print(self.behavior_dict)
     for behavior_list in self.behavior_dict:
       multiplier = 0
       for behavior in behavior_list:
+        # print(behavior_list)
         multiplier += self.weighted_values_dict[behavior]
       multipliers_list.append(multiplier)
     return multipliers_list
@@ -154,7 +160,7 @@ class Sentiment:
     print(' ')
 
 
-    return {'positive': 0.05, 'negative': 0.06, 'neutral': 0.89}
+    # return {'positive': 0.05, 'negative': 0.06, 'neutral': 0.89}
 
   # def pos_sentiment(self, phrase):
   #   import pos_words
