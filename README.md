@@ -1,14 +1,13 @@
-# Baby Got Backend - Language Analyzer
-### Introduction
 # Language Analyzer Group Project
 
-### NSS Team Project
+## NSS Team Project
+
+### Introduction
 #### Team Members: (See us on GitHub)
  - [Chase Ramsey]
  - [Tekisha Hammock]
  - [Cory Tohill]
  - [Simon Herrera]
-
 
 
    [chase ramsey]: <https://github.com/chase-ramsey>
@@ -25,7 +24,7 @@ The team was instructed to build a language analyzer while meeting 2 requirement
 
 The Language Analyzer itself should analyze test statements and output a report of its analysis of Sentiment, Behavior and Domain in a numerical range between 0 and 1.
 
-#### Here is the basic functionality for each Module:
+#### Basic functionality of each Module:
 **Tokenizer** contains methods that are called as needed to parse the original message.
 
 **Behavior Predictor** determines what behaviors are present in the message, prints a report and pass those behaviors in a list to the Sentiemetn Module.
