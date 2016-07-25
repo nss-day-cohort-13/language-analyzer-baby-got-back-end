@@ -8,7 +8,8 @@
  - [Tekisha Hammock]
  - [Cory Tohill]
  - [Simon Herrera]
- ### Information
+
+### Information
 
 The team was instructed to build a language analyzer while meeting 2 requirements...
 
