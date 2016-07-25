@@ -23,7 +23,7 @@ class LanguageAnalyzer:
 
     Method arguments:
     -----------------
-    n/as
+    n/a
     '''
     self.sentiment_module.run_all_sentiment()
     self.behavior_module.run_all_behavior()
