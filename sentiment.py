@@ -40,7 +40,7 @@ class Sentiment:
     self.behavior = Behavior(phrase)
     # self.behavior_dict = [['aggressive', 'inquisitive'], ['mentoring'], ['social'], ['planning']]
     self.behavior.find_behaviors()
-    self.behavior_dict = self.behavior.sentence_behaviors
+    self.behavior_dict = self.behavior.sentence_behavior_list
     self.tokenizer = Bespokenize()
     self.tokenizer.parse_phrase(phrase)
     self.sentence_list = self.tokenizer.filter_punctuation()
@@ -100,9 +100,11 @@ class Sentiment:
 
     """
     multipliers_list = []
+    # print(self.behavior_dict)
     for behavior_list in self.behavior_dict:
       multiplier = 0
       for behavior in behavior_list:
+        # print(behavior_list)
         multiplier += self.weighted_values_dict[behavior]
       multipliers_list.append(multiplier)
     return multipliers_list
@@ -158,7 +160,7 @@ class Sentiment:
     print(' ')
 
 
-    return {'positive': 0.05, 'negative': 0.06, 'neutral': 0.89}
+    # return {'positive': 0.05, 'negative': 0.06, 'neutral': 0.89}
 
   # def pos_sentiment(self, phrase):
   #   import pos_words
