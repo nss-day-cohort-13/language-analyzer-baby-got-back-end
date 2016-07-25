@@ -8,14 +8,7 @@
  - [Tekisha Hammock]
  - [Cory Tohill]
  - [Simon Herrera]
-
-
-   [chase ramsey]: <https://github.com/chase-ramsey>
-   [tekisha hammock]: <https://github.com/tekishahammock>
-   [cory tohill]: <https://github.com/CoryTohill>
-   [simon herrera]: <https://github.com/SimonHerrera>
-
-  #### Information
+ ### Information
 
 The team was instructed to build a language analyzer while meeting 2 requirements...
 
@@ -24,7 +17,7 @@ The team was instructed to build a language analyzer while meeting 2 requirement
 
 The Language Analyzer itself should analyze test statements and output a report of its analysis of Sentiment, Behavior and Domain in a numerical range between 0 and 1.
 
-#### Basic functionality of each Module:
+### Basic functionality of each Module:
 **Tokenizer** contains methods that are called as needed to parse the original message.
 
 **Behavior Predictor** determines what behaviors are present in the message, prints a report and pass those behaviors in a list to the Sentiemetn Module.
@@ -33,6 +26,10 @@ The Language Analyzer itself should analyze test statements and output a report 
 
 **Domain Identifier** determines the subject matter of the message.
 
+   [chase ramsey]: <https://github.com/chase-ramsey>
+   [tekisha hammock]: <https://github.com/tekishahammock>
+   [cory tohill]: <https://github.com/CoryTohill>
+   [simon herrera]: <https://github.com/SimonHerrera>
 
 
 
