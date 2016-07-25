@@ -3,18 +3,18 @@ from lexicon import *
 from collections import Counter
 
 class Behavior:
-    '''
-    Contains methods for predicting the behavior of a provided statement
+  '''
+  Contains methods for predicting the behavior of a provided statement
 
-    Methods:
-    -----------------
-    __init__
-    find_behaviors
-    find_weighted_behavior_values
-    generate_phrase_behavior_report
-    print_report
-    run_all_behavior
-    '''
+  Methods:
+  -----------------
+  __init__
+  find_behaviors
+  find_weighted_behavior_values
+  generate_phrase_behavior_report
+  print_report
+  run_all_behavior
+  '''
 
   def __init__(self, phrase):
     '''
@@ -46,14 +46,14 @@ class Behavior:
       self.sentence_behavior_list.append(self.sentence_behaviors)
       # loops through each word in the current sentence
       for word in sentence:
-        # loops through each item in behavior dictionary in lexicon
+      # loops through each item in behavior dictionary in lexicon
         for behavior, keys in lexicon[0]["behavior"].items():
-          # loops through list values of each behavior for current word to locate a match
+        # loops through list values of each behavior for current word to locate a match
           for keyword in keys:
-            # If match is located to value, key is appended to sentence_behaviors list
+          # If match is located to value, key is appended to sentence_behaviors list
             if word == keyword:
               self.sentence_behaviors.append(behavior)
-    # Returns full sentence_behavior_list
+            # Returns full sentence_behavior_list
     return self.sentence_behavior_list
 
   def find_weighted_behavior_value(self):
@@ -73,18 +73,18 @@ class Behavior:
       # Adds behavior_instance_count to behavior_count list
       self.behavior_count.append(self.behavior_instance_count)
 
-    # Once the behavior_count list has been populated, we loop back through that list to turn the instance counts into percentages
-    for self.behavior_instance_count in self.behavior_count:
-      # For each behavior_instance count in behavior_count, create new dict for behavior_percent and add it to behavior_percentage_weighted
-      self.behavior_percent = dict()
-      self.behavior_percentage_weighted.append(self.behavior_percent)
-      # For each key/value pair in behavior_instance_count, run equation to get percentage value
-      for behavior, value in self.behavior_instance_count.items():
-        raw_percent = value / sum(self.behavior_instance_count.values())
-        # Percentages are made to appear rounded to two decimal places
-        percent = float("{0:.2f}".format(raw_percent))
-        # Percentages are added as values in key/value pairs to behavior_percent dictionary
-        self.behavior_percent[behavior] = percent
+      # Once the behavior_count list has been populated, we loop back through that list to turn the instance counts into percentages
+      for self.behavior_instance_count in self.behavior_count:
+        # For each behavior_instance count in behavior_count, create new dict for behavior_percent and add it to behavior_percentage_weighted
+        self.behavior_percent = dict()
+        self.behavior_percentage_weighted.append(self.behavior_percent)
+        # For each key/value pair in behavior_instance_count, run equation to get percentage value
+        for behavior, value in self.behavior_instance_count.items():
+          raw_percent = value / sum(self.behavior_instance_count.values())
+          # Percentages are made to appear rounded to two decimal places
+          percent = float("{0:.2f}".format(raw_percent))
+          # Percentages are added as values in key/value pairs to behavior_percent dictionary
+          self.behavior_percent[behavior] = percent
 
   def generate_phrase_behavior_report(self):
     '''
@@ -100,18 +100,18 @@ class Behavior:
     for self.behavior_percent in self.behavior_percentage_weighted:
       self.sentence_count_sum += sum(self.behavior_percent.values())
 
-    # New list to hold averaged behavior percentages, appends sentence behavior dictionaries prior to getting overall average
-    self.phrase_averaged_behaviors = list()
-    # For each sentence in phrase, create a new dict for percent averages weighted against the whole phrase and append to list
-    for self.behavior_percent in self.behavior_percentage_weighted:
-      self.sentence_averaged_behaviors = dict()
-      self.phrase_averaged_behaviors.append(self.sentence_averaged_behaviors)
-      # Calculates new percentage avergae per sentence against phrase total value, makes it appear rounded to two decimal places
-      for behavior, value in self.behavior_percent.items():
-        raw_weighted_value = value / self.sentence_count_sum
-        rounded_value = float("{0:.2f}".format(raw_weighted_value))
-        # appends new key/value pair to sentence averaged behavior
-        self.sentence_averaged_behaviors[behavior] = rounded_value
+      # New list to hold averaged behavior percentages, appends sentence behavior dictionaries prior to getting overall average
+      self.phrase_averaged_behaviors = list()
+      # For each sentence in phrase, create a new dict for percent averages weighted against the whole phrase and append to list
+      for self.behavior_percent in self.behavior_percentage_weighted:
+        self.sentence_averaged_behaviors = dict()
+        self.phrase_averaged_behaviors.append(self.sentence_averaged_behaviors)
+        # Calculates new percentage avergae per sentence against phrase total value, makes it appear rounded to two decimal places
+        for behavior, value in self.behavior_percent.items():
+          raw_weighted_value = value / self.sentence_count_sum
+          rounded_value = float("{0:.2f}".format(raw_weighted_value))
+          # appends new key/value pair to sentence averaged behavior
+          self.sentence_averaged_behaviors[behavior] = rounded_value
 
     # Adds all of the dictionaries in phrase_averaged_behaviors together in a single dictionary, sums the value of any repeated keys
     self.raw_report = sum((Counter(self.sentence_averaged_behaviors) for self.sentence_averaged_behaviors in self.phrase_averaged_behaviors),Counter())
