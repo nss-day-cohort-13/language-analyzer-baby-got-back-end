@@ -13,18 +13,25 @@ class Sentiment:
 
   Methods:
   -----------------
-  get_phrase
+  run_all_sentiment
   calculate_Word_count
   calculate_multipliers
   process_sentences
   calculate_sentence
+
   """
 
   def __init__(self, phrase):
-    """Initialization
-    If incoming phrase present - use
-    Else call get_phrase
     """
+    Initialization
+
+    Method arguments:
+    -----------------
+    phrase(string) -- phrase passed in
+
+
+    """
+
     self.weighted_values_dict = {
       "aggressive": 5,
       "passive": 1,
@@ -47,29 +54,24 @@ class Sentiment:
     passed_word_count = self.tokenizer.word_count()
 
   def run_all_sentiment(self):
+    """Runs all required methods to calculate sentiment
+
+    Method arguments:
+    -----------------
+    N/A
+
+    """
     self.process_sentences()
     self.calculate_multipliers()
     self.calculate_sentence()
 
 
-  # def get_phrase(self):
-  #   """If called provied phrase for sentiment analysis.
-
-  #   Returns: phrase
-
-  #   """
-  #   phrase = 'The challenge of space exploration and particularly of landing men on the moon represents the greatest challenge which has ever faced the human race. Even if there were no clear scientific or other arguments for proceeding with this task, the whole history of our civilization would still impel men toward the goal. How would your life be different if you stopped making negative judgmental assumptions about people you encounter? Let today be the day you look for the good in everyone you meet and respect their journey.'
-  #   return phrase
-
-
   def calculate_word_count(self, words_to_analyze_list):
     """Calculate positive, negative and neutral word count per sentence.
 
-    Keyword arguments:
-    positive_count - positive words found in phrase within pos_words.py file
-    negative_count - positive words found in phrase within pos_words.py file
-    neutral_count - positive words found in phrase within pos_words.py file
-      if word found - add to related list
+    Method arguments:
+    -----------------
+    words_to_analyze_list(string) - positive words found in phrase within pos_words.py file
 
     Returns: positive_count, negative_count, neutral_count
 
@@ -78,6 +80,7 @@ class Sentiment:
     negative_count = 0
     neutral_count = 0
 
+  #for loop - finds words counts
     for word in words_to_analyze_list:
       if word in pos_words:
         positive_count +=1
@@ -90,35 +93,38 @@ class Sentiment:
 
     return positive_count, negative_count, neutral_count
 
+
   def calculate_multipliers(self):
     """Calculate list of Behavior multipliers.
 
-    Keyword arguments:
-    behavior_dict - behaviors that are present
+    Method arguments:
+    N/A
 
     Returns: multipliers_list
 
     """
     multipliers_list = []
-    # print(self.behavior_dict)
+
+  #for loop - takes passed in behaviors * value in behavior_dict
     for behavior_list in self.behavior_dict:
       multiplier = 0
       for behavior in behavior_list:
-        # print(behavior_list)
         multiplier += self.weighted_values_dict[behavior]
       multipliers_list.append(multiplier)
     return multipliers_list
 
   def process_sentences(self):
-    """Builds sentence lists and reports pos, neg, neutral word counts by sente.
+    """Builds sentence lists and reports pos, neg, neutral word counts by sentence
 
-    Keyword arguments:
-    behavior_dict - behaviors that are present
+    Method arguments:
+    N/A
 
-    Returns: multipliers_list
+    Returns: sentence_count
 
     """
     self.sentence_count = []
+
+  # for loop - finds pos, neg, neutral words in each sentence
     for sentence in self.sentence_list:
       new_sentence_list = []
       positive_count, negative_count, neutral_count = self.calculate_word_count(sentence)
@@ -130,22 +136,37 @@ class Sentiment:
 
 
   def calculate_sentence(self):
+    """Takes totals pos, neg, neutral words by behavior multiplier
+
+
+    Method arguments:
+    N/A
+
+    Returns: Final Sentiment Report
+
+    """
     final_total = []
     phrase_totals = []
     sentiment_percentages = []
     phrase_totals_added = 0
     number_of_sentences = self.tokenizer.sentence_count() # showing 4
     final_multipliers_list = self.calculate_multipliers() # showing [6, 2, 3, 2]
+
+  #for loop - for all sentences take all pos, neg, neutral counts * multiplier
     for x in range(0, number_of_sentences):
       total = []
       for value in self.sentence_count[x]: # for this value in each
         total.append(value * final_multipliers_list[x])
       final_total.append(total)
+
+  #for loop - use above numbers, append sentiment
     for number in range(0, 3):
       sentiment = 0
       for final_value in final_total:
         sentiment += final_value[number]
       phrase_totals.append(sentiment)
+
+  #for loop - use sentiment totals and divide them all by phrase total words
     for sentiment_value in phrase_totals:
       phrase_totals_added += sentiment_value
     for sentiment_value in phrase_totals:
@@ -159,16 +180,3 @@ class Sentiment:
     print('  Neutral: {0}'.format(sentiment_percentages[2]))
     print(' ')
 
-
-    # return {'positive': 0.05, 'negative': 0.06, 'neutral': 0.89}
-
-  # def pos_sentiment(self, phrase):
-  #   import pos_words
-  #   return 4
-
-# run_all_sentiment()
-# newobj = Sentiment()
-# newobj = Sentiment(phrase='Hello there. Today is good')
-# print(newobj.positive_sentiment_list)
-# print(newobj.negative_sentiment_list)
-# print(newobj.neutral_sentiment_list)
