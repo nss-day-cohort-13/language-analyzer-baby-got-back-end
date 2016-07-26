@@ -15,7 +15,7 @@ class TestBehavior(unittest.TestCase):
     self.behavior.find_behaviors() ##FEEDBACK## - The return value of this method is never tested
     self.behavior.find_weighted_behavior_value() ##FEEDBACK## - The return value of this method is never tested
     self.behavior.generate_phrase_behavior_report() ##FEEDBACK## - The return value of this method is never tested
-    self.behavior.print_report() ##FEEDBACK## - No need to test this one, it has no logic, only prints
+    self.behavior.print_report() ##FEEDBACK## - No need to run this, as it's not being tested
 
   # Done
   def test_module_iterate_parsed_sentence_for_behaviors(self):
