@@ -9,7 +9,7 @@
 * In the terminal, navigate to the project folder
 * To execute the program, run the following command in the terminal:
     ```
-    python lang_py.py
+    python lang_py.py ##FEEDBACK## - should be lang_p.py
     ```
 * A command prompt should appear asking for a phrase to analyze. Type in the phrase you want analyzed and press enter to run the analysis.
 * The analysis includes:
