@@ -15,7 +15,10 @@ class Bespokenize:
     sentence_count
     get_position
     """
-    def parse_phrase(self, phrase):
+    def parse_phrase(self, phrase):##FEEDBACK## - Since this needs to happen before any other methods,
+                                                # it's a pretty good candidate for sticking in an __init__
+                                                # method.  Cuts down on a function call in all the modules
+                                                # that use it.
         """Parse a phrase by words and punctuation and store in self.parsed
 
         Method arguments:
@@ -114,9 +117,9 @@ class Bespokenize:
             for char in item:
                 if char.isalnum():
                      alphanums_used.add(char)
-        alphanums_used = list(alphanums_used)
-        alphanums_used = sorted(alphanums_used)
-        return ''.join(char for char in alphanums_used)
+        alphanums_used = list(alphanums_used)   ##FEEDBACK## - you could one-line this by wrapping the list() in the sorted()
+        alphanums_used = sorted(alphanums_used) #-----------/
+        return ''.join(char for char in alphanums_used) ##FEEDBACK## - no need for a for loop, you can just join alphanums_used
 
     def sentence_count(self):
         """Lists number of sentences present in self.parsed
