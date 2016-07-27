@@ -86,9 +86,6 @@ class Behavior:
           # Percentages are added as values in key/value pairs to behavior_percent dictionary
           self.behavior_percent[behavior] = percent
 
-    ##FEEDBACK## - Since this method does not return a value, it can't easily be tested. Perhaps return
-    #              self.behavior_percentage_weighted at the end for testing purposes?
-
   def generate_phrase_behavior_report(self):
     '''
     Averages the behavior percentages per sentence into an overall report for the phrase

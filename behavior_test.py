@@ -12,9 +12,9 @@ class TestBehavior(unittest.TestCase):
     self.behavior = Behavior(self.test_string)
     self.tokenizer = Bespokenize() ##FEEDBACK## - You never seem to use this module anywhere in the tests
     self.lexicon = lexicon ##FEEDBACK## - Also never used
-    self.behavior.find_behaviors() ##FEEDBACK## - The return value of this method is never tested
-    self.behavior.find_weighted_behavior_value() ##FEEDBACK## - The return value of this method is never tested
-    self.behavior.generate_phrase_behavior_report() ##FEEDBACK## - The return value of this method is never tested
+    self.behavior.find_behaviors() ##FEEDBACK## - The output of this method is never tested
+    self.behavior.find_weighted_behavior_value() ##FEEDBACK## - The output of this method is never tested
+    self.behavior.generate_phrase_behavior_report() ##FEEDBACK## - The output of this method is never tested
     self.behavior.print_report() ##FEEDBACK## - No need to run this, as it's not being tested
 
   # Done
