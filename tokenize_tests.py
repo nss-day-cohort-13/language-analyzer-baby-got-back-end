@@ -1,8 +1,9 @@
+##FEEDBACK## - Kind of confusing that this is named tokenize tests, but the class you're testing is bespokenize
 import unittest
 from bespoken import *
-from sentiment import *
-from behavior import *
-from domain import *
+from sentiment import * #-----------\
+from behavior import *  ##FEEDBACK## - You import these three modules, but never use them
+from domain import *    #-----------/
 
 class TestTokenizer(unittest.TestCase):
 
@@ -31,7 +32,7 @@ class TestTokenizer(unittest.TestCase):
     self.assertEqual(self.tokenizer.parse_phrase(self.test_string1), self.tokenizer.parsed)
     self.assertEqual(self.tokenizer.parse_phrase(self.test_string2), self.tokenizer.parsed)
 
-  def test_parse_phrase_output_is_parsed_and_lowercase(self):
+  def test_parse_phrase_output_is_parsed_and_lowercase(self):##FEEDBACK## - You could use self.test_parsed1 and self.test_parsed2 instead of typing it out again
     self.assertEqual(self.tkn_1.parsed, ["oh", "man", ",", "i", "love", "sentences", "."])
     self.assertEqual(self.tkn_2.parsed, ["oh", "man", ",", "i", "love", "sentences", ".", "do", "you", "also", "love", "sentences", "?"])
 
@@ -39,7 +40,7 @@ class TestTokenizer(unittest.TestCase):
     self.assertEqual(self.tkn_1.filter_punctuation(), [["oh", "man", "i", "love", "sentences"]])
     self.assertEqual(self.tkn_2.filter_punctuation(), [["oh", "man", "i", "love", "sentences"], ["do", "you", "also", "love", "sentences"]])
 
-  def test_sentences_seperated(self):
+  def test_sentences_seperated(self):##FEEDBACK## - You could use self.test_parsed1 and self.test_parsed2 instead of typing it out again
     self.assertEqual(self.tkn_1.seperate_into_sentences(), [["oh", "man", ",", "i", "love", "sentences", "."]])
     self.assertEqual(self.tkn_2.seperate_into_sentences(), [["oh", "man", ",", "i", "love", "sentences", "."], ["do", "you", "also", "love", "sentences", "?"]])
 
