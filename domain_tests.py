@@ -1,6 +1,6 @@
 import unittest
 import string
-from bespoken import *
+from bespoken import * ##FEEDBACK## - This module is never used in the tests
 from domain import *
 
 class TestDomainAnalysis(unittest.TestCase):
@@ -19,16 +19,16 @@ class TestDomainAnalysis(unittest.TestCase):
     self.assertIsInstance(self.domain_mod.dom_parsed[0], list)
 
   def test_module_creates_list_of_keywords_in_sentences(self):
-    self.assertIsInstance(self.domain_mod.keyword_list, list)
-    self.assertTrue(len(self.domain_mod.keyword_list[0]) > 0)
+    self.assertIsInstance(self.domain_mod.keyword_list, list) ##FEEDBACK## - You seem to do these asserts 2x
+    self.assertTrue(len(self.domain_mod.keyword_list[0]) > 0) #-----------/
     self.assertIsInstance(self.domain_mod.keyword_list, list)
     self.assertTrue(len(self.domain_mod.keyword_list[0]) > 0)
     self.assertIsInstance(self.domain_mod.keyword_list[0][0], str)
     self.assertEqual(self.domain_mod.keyword_list, [['man', 'love', 'sentences'], ['love', 'sentences']])
 
   def test_module_creates_list_of_domains_present_in_sentences(self):
-    self.assertIsInstance(self.domain_mod.domain_list, list)
-    self.assertTrue(len(self.domain_mod.domain_list[0]) > 0)
+    self.assertIsInstance(self.domain_mod.domain_list, list) ##FEEDBACK## - 2x asserts again
+    self.assertTrue(len(self.domain_mod.domain_list[0]) > 0) #-----------/
     self.assertIsInstance(self.domain_mod.domain_list, list)
     self.assertTrue(len(self.domain_mod.domain_list[0]) > 0)
     self.assertIsInstance(self.domain_mod.domain_list[0][0], str)
