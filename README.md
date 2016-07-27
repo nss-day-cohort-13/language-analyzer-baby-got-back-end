@@ -21,7 +21,7 @@ The Language Analyzer itself should analyze test statements and output a report 
 ### Basic functionality of each Module:
 **Tokenizer** contains methods that are called as needed to parse the original message.
 
-**Behavior Predictor** determines what behaviors are present in the message, prints a report and pass those behaviors in a list to the Sentiment Module.
+**Behavior Predictor** determines what behaviors are present in the message, prints a report and pass those behaviors in a list to the Sentiment Module.
 
 **Sentiment Analysis** shows what percentage positive, negative or neutral the statement is. The inherited behaviors have a slight factor on the overall sentiment.
 
@@ -42,7 +42,7 @@ The Language Analyzer itself should analyze test statements and output a report 
 * In the terminal, navigate to the project folder
 * To execute the program, run the following command in the terminal:
     ```
-    python lang_py.py
+    python lang_p.py
     ```
 * A command prompt should appear asking for a phrase to analyze. Type in the phrase you want analyzed and press enter to run the analysis.
 * The analysis includes:
