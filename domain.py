@@ -49,7 +49,7 @@ class Domain:
       self.keyword_list.append(sentence_keywords)
       self.domain_list.append(sentence_domains)
 
-  def create_phrase_report(self):
+  def create_phrase_report(self): ##FEEDBACK## - The inner workings of this are rather opaque, some comments would go a long way
     '''Populates self.phrase_report with lists of single
        reports for each sentence in the phrase being analyzed.
 
@@ -95,7 +95,7 @@ class Domain:
       for partial in percentage_report:
         try:
           self.full_report[domain] += float(partial[domain])
-        except:
+        except: ##FEEDBACK## - This is VERY bad practice.  If you can expect an error you want to suppress, only catch that particular type of error, so that other unexpected errors can still crash/throw a warning.
           pass
       self.full_report[domain] /= len(self.phrase_report)
       self.full_report[domain] = format(self.full_report[domain], '.2f')
