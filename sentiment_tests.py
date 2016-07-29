@@ -31,10 +31,6 @@ class TestSentiment(unittest.TestCase):
   def test_behavior_multiplier_totaled(self):
     self.assertEqual(self.sentiment.calculate_multipliers(), [6, 2, 3, 2])
 
-
-
-
-
   def test_final_sentence_calculation(self):
     self.sentiment.process_sentences()
     report = {
@@ -43,7 +39,6 @@ class TestSentiment(unittest.TestCase):
       'neutral': 0.90
     }
     self.assertEqual(self.sentiment.calculate_sentence(), report)
-
 
 
 if __name__ == '__main__':
