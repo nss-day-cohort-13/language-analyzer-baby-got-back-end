@@ -1,8 +1,8 @@
 import unittest
 import string
-from bespoken import *
+from bespoken import * ##FEEDBACK## - This module doesn't appear to be used in the tests
 from sentiment import *
-from behavior import *
+from behavior import * ##FEEDBACK## - This module doesn't appear to be used in the tests
 
 class TestSentiment(unittest.TestCase):
 

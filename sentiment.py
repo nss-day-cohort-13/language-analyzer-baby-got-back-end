@@ -20,7 +20,7 @@ class Sentiment:
   calculate_sentence
   """
 
-  def __init__(self, phrase):
+  def __init__(self, phrase): ##FEEDBACK## - Docstring appears to not be true, this init requires a phrase, and the get phrase is commented out
     """Initialization
     If incoming phrase present - use
     Else call get_phrase
@@ -62,7 +62,7 @@ class Sentiment:
   #   return phrase
 
 
-  def calculate_word_count(self, words_to_analyze_list):
+  def calculate_word_count(self, words_to_analyze_list): ##FEEDBACK## - The other modules describe what the inputs each method takes are. Listing the output is also good, but knowing what input it takes is useful in knowing how to use the method.
     """Calculate positive, negative and neutral word count per sentence.
 
     Keyword arguments:
@@ -81,10 +81,10 @@ class Sentiment:
     for word in words_to_analyze_list:
       if word in pos_words:
         positive_count +=1
-        continue
+        continue ##FEEDBACK## - No need to continue
       elif word in neg_words:
         negative_count +=1
-        continue
+        continue ##FEEDBACK## - No need to continue
       else:
         neutral_count +=1
 
@@ -109,7 +109,7 @@ class Sentiment:
       multipliers_list.append(multiplier)
     return multipliers_list
 
-  def process_sentences(self):
+  def process_sentences(self): ##FEEDBACK## - Sentence seems to be missing a few letters
     """Builds sentence lists and reports pos, neg, neutral word counts by sente.
 
     Keyword arguments:
@@ -129,19 +129,19 @@ class Sentiment:
     return self.sentence_count
 
 
-  def calculate_sentence(self):
+  def calculate_sentence(self): ##FEEDBACK## - This method has no docstring, also, there is a LOT of logic going on here that's untested.  It would be good to have this as a testable method that returns the sentiment percentages so they can be tested, and then a separate method that only prints.
     final_total = []
     phrase_totals = []
     sentiment_percentages = []
     phrase_totals_added = 0
     number_of_sentences = self.tokenizer.sentence_count() # showing 4
     final_multipliers_list = self.calculate_multipliers() # showing [6, 2, 3, 2]
-    for x in range(0, number_of_sentences):
+    for x in range(0, number_of_sentences): ##FEEDBACK## - For ranges starting at 0, you don't need the 0
       total = []
       for value in self.sentence_count[x]: # for this value in each
         total.append(value * final_multipliers_list[x])
       final_total.append(total)
-    for number in range(0, 3):
+    for number in range(0, 3): ##FEEDBACK## - For ranges starting at 0, you don't need the 0
       sentiment = 0
       for final_value in final_total:
         sentiment += final_value[number]
